@@ -33,6 +33,8 @@ function verificar() {
         if (fsex[0].checked) {
             genero = "homem";
 
+            document.body.style.background = " rgb(0, 28, 54)"
+
             if (idade >= 0 && idade < 6) {
                 //baby
                 imge.setAttribute("src", "img/h_bebe.jpeg");
@@ -60,6 +62,8 @@ function verificar() {
         // se não se mulher estiver marcado
         else if (fsex[1].checked) {
             genero = "mulher";
+
+            document.body.style.background = " rgb(172, 5, 61)"
 
             if (idade >= 0 && idade < 6) {
                 //baby
