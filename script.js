@@ -19,79 +19,45 @@ function verificar() {
     }
     //se não
     else {
-        //sexo
-        var fsex = document.getElementsByName("sex");
+        //sexo 
+        var fsex = document.getElementsByName("sex")[0].checked ? "h" : "m";
+
         //idade
         var idade = ano - Number(fano.value);
-        //genero
-        var genero = "";
+
         //imagem que será inserida
         var imge = document.createElement("img");
         imge.setAttribute("id", "foto");
 
-        //se homem estiver marcado
-        if (fsex[0].checked) {
-            genero = "homem";
+        // Verifica se o genero é homem ou mulher e aplica o background de acordo
+        document.body.style.background = fsex === "h" ? " rgb(0, 28, 54)" : " rgb(172, 5, 61)";
 
-            document.body.style.background = " rgb(0, 28, 54)"
-
-            if (idade >= 0 && idade < 6) {
-                //baby
-                imge.setAttribute("src", "img/h_bebe.jpeg");
-            }
-
-            if (idade >= 6 && idade < 12) {
-                //criança
-                imge.setAttribute("src", "img/h_criança.jpeg");
-            }
-            if (idade >= 12 && idade < 18) {
-                //jovem
-                imge.setAttribute("src", "img/h_jovem.jpeg");
-            }
-
-            if (idade >= 18 && idade < 60) {
-                imge.setAttribute("src", "img/h.jpeg");
-                //adulto
-            }
-
-            if (idade >= 60) {
-                //idoso
-                imge.setAttribute("src", "img/h_idoso.jpeg");
-            }
+        if (idade >= 0 && idade < 6) {
+            //baby
+            imge.setAttribute("src", `img/${fsex}_bebe.jpeg`);
         }
-        // se não se mulher estiver marcado
-        else if (fsex[1].checked) {
-            genero = "mulher";
 
-            document.body.style.background = " rgb(172, 5, 61)"
+        if (idade >= 6 && idade < 12) {
+            //criança
+            imge.setAttribute("src", `img/${fsex}_crianca.jpeg`);
+        }
+        if (idade >= 12 && idade < 18) {
+            //jovem
+            imge.setAttribute("src", `img/${fsex}_jovem.jpeg`);
+        }
 
-            if (idade >= 0 && idade < 6) {
-                //baby
-                imge.setAttribute("src", "img/m_bebe.jpg");
-            }
+        if (idade >= 18 && idade < 60) {
+            imge.setAttribute("src", `img/${fsex}.jpeg`);
+            //adulto
+        }
 
-            if (idade >= 6 && idade < 12) {
-                //criança
-                imge.setAttribute("src", "img/m_crianca.jpeg");
-            }
-            if (idade >= 12 && idade < 18) {
-                //jovem
-                imge.setAttribute("src", "img/m_jovem.jpeg");
-            }
-
-            if (idade >= 18 && idade < 60) {
-                imge.setAttribute("src", "img/m.jpeg");
-                //adulto
-            }
-
-            if (idade >= 60) {
-                //idoso
-                imge.setAttribute("src", "img/m_idosa.jpg");
-            }
+        if (idade >= 60) {
+            //idoso					 // Verifica se é homem ou mulher mudando o genero da plavra
+            imge.setAttribute("src", `img/${fsex}_idos${fsex === "m" ? "a" : "o"}.jpeg`);
         }
 
         //escrevendo
-        resposta.innerHTML = `detectado ${genero} de ${idade} anos`;
+        resposta.innerHTML = `detectado ${fsex === "h" ? "homem" : "mulher"} de ${idade} anos`;
         //colocando foto
         resposta.appendChild(imge);
     }
